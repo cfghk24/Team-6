@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AFTECH - Event List</title>
+    <link rel="stylesheet" href="./css/dashEvent.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Event List</h1>
+        
+        <form id="searchForm" class="search-form">
+            <input type="text" id="eventId" placeholder="Event ID">
+            <input type="text" id="title" placeholder="Event Title">
+            <input type="date" id="startDate" placeholder="Start Date">
+            <input type="date" id="endDate" placeholder="End Date">
+            <input type="text" id="status" placeholder="Status">
+            <div class="button-group">
+                <button type="submit" class="btn btn-primary">
+                    <span class="icon">🔍</span> Search
+                </button>
+                <button type="button" id="resetBtn" class="btn btn-secondary">Reset</button>
+            </div>
+        </form>
+
+        <table id="eventTable">
+            <thead>
+                <tr>
+                    <th>Event ID</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Fee</th>
+                    <th>Mentor</th>
+                    <th>Enroll Time</th>
+                    <th>Participants</th>
+                    <th>Attendance</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Table rows will be dynamically populated -->
+            </tbody>
+        </table>
+
+        <div class="pagination">
+            <button id="prevBtn" class="btn btn-outline">
+                <span class="icon">◀</span> Previous
+            </button>
+            <button id="nextBtn" class="btn btn-outline">
+                Next <span class="icon">▶</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="./js/dashEvent.js"></script>
+</body>
+</html>
