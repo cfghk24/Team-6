@@ -51,56 +51,6 @@
                     </div>
                 </div>
             </div>
-            <div class="dashboard-grid">
-                <div class="card">
-                    <h3>Recent Applicants</h3>
-                    <div class="search-container">
-                        <input type="text" id="searchInput" placeholder="Search applicants...">
-                        <button id="searchBtn">Search</button>
-                    </div>
-                    <table id="applicantsTable">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Age</th>
-                                <th>Guardian Email</th>
-                                <th>Applied For</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Table rows will be dynamically populated -->
-                        </tbody>
-                    </table>
-                </div>
-                <div class="card" id="applicantDetails">
-                    <h3>Applicant Details</h3>
-                    <form id="applicantForm">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
-                        
-                        <label for="age">Age</label>
-                        <input type="number" id="age" name="age" required>
-                        
-                        <label for="guardian">Guardian Email</label>
-                        <input type="email" id="guardian" name="guardian" required>
-                        
-                        <label for="appliedFor">Applied For</label>
-                        <select id="appliedFor" name="appliedFor" required>
-                            <option value="Painting Workshop">Painting Workshop</option>
-                            <option value="Drama Club">Drama Club</option>
-                            <option value="Music Class">Music Class</option>
-                            <option value="Dance Performance">Dance Performance</option>
-                            <option value="Creative Writing">Creative Writing</option>
-                        </select>
-                        
-                        <div class="form-actions">
-                            <button type="submit">Save Changes</button>
-                            <button type="button" id="deleteBtn">Delete Applicant</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
         </main>
     </div>
     <script src="dashApplicant.js"></script>
