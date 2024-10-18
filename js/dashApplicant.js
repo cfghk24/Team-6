@@ -14,22 +14,7 @@ const deleteBtn = document.getElementById('deleteBtn');
 const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('searchBtn');
 
-// Populate applicants table
-function populateApplicantsTable(applicants) {
-    const tbody = applicantsTable.querySelector('tbody');
-    tbody.innerHTML = '';
-    applicants.forEach(applicant => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${applicant.name}</td>
-            <td>${applicant.age}</td>
-            <td>${applicant.guardian}</td>
-            <td>${applicant.appliedFor}</td>
-            <td><button class="edit-btn" data-id="${applicant.id}">Edit</button></td>
-        `;
-        tbody.appendChild(row);
-    });
-}
+
 
 // Edit applicant
 function editApplicant(id) {
@@ -45,66 +30,12 @@ function editApplicant(id) {
 
 // Search applicants
 function searchApplicants(query) {
-    return applicantsData.filter(applicant => 
+    return applicantsData.filter(applicant =>
         applicant.name.toLowerCase().includes(query.toLowerCase()) ||
         applicant.guardian.toLowerCase().includes(query.toLowerCase()) ||
         applicant.appliedFor.toLowerCase().includes(query.toLowerCase())
     );
 }
-
-// Event listeners
-applicantsTable.addEventListener('click', (e) => {
-    if (e.target.classList.contains('edit-btn')) {
-        const id = parseInt(e.target.dataset.id);
-        editApplicant(id);
-    }
-});
-
-applicantForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const id = parseInt(applicantForm.dataset.id);
-    const updatedApplicant = {
-        id,
-        name: document.getElementById('name').value,
-        age: parseInt(document.getElementById('age').value),
-        guardian: document.getElementById('guardian').value,
-        appliedFor: document.getElementById('appliedFor').value
-    };
-    const index = applicantsData.findIndex(a => a.id === id);
-    if (index !== -1) {
-        applicantsData[index] = updatedApplicant;
-        populateApplicantsTable(applicantsData);
-        applicantForm.reset();
-        delete applicantForm.dataset.id;
-    }
-});
-
-deleteBtn.addEventListener('click', () => {
-    const id = parseInt(applicantForm.dataset.id);
-    if (id) {
-        const index = applicantsData.findIndex(a => a.id === id);
-        if (index !== -1) {
-            applicantsData.splice(index, 1);
-            populateApplicantsTable(applicantsData);
-            applicantForm.reset();
-            delete applicantForm.dataset.id;
-        }
-    }
-});
-
-searchBtn.addEventListener('click', () => {
-    const query = searchInput.value;
-    const searchResults = searchApplicants(query);
-    populateApplicantsTable(searchResults);
-});
-
-searchInput.addEventListener('keyup', (e) => {
-    if (e.key === 'Enter') {
-        const query = searchInput.value;
-        const searchResults = searchApplicants(query);
-        populateApplicantsTable(searchResults);
-    }
-});
 
 // Initialize age distribution chart
 function initAgeChart() {
@@ -133,6 +64,5 @@ function initAgeChart() {
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
-    populateApplicantsTable(applicantsData);
     initAgeChart();
 });
