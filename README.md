@@ -1,5 +1,5 @@
 # Team-6
-# AFtec Platform
+# AFTEC Platform
 
 ## Overview
 
