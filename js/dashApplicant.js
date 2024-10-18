@@ -1,42 +1,3 @@
-// Sample data
-const applicantsData = [
-    { id: 1, name: 'Emily Chen', age: 9, guardian: 'parent@example.com', appliedFor: 'Painting Workshop' },
-    { id: 2, name: 'Liam Smith', age: 11, guardian: 'guardian@example.com', appliedFor: 'Drama Club' },
-    { id: 3, name: 'Sophia Wong', age: 7, guardian: 'family@example.com', appliedFor: 'Music Class' },
-    { id: 4, name: 'Ethan Brown', age: 13, guardian: 'caretaker@example.com', appliedFor: 'Dance Performance' },
-    { id: 5, name: 'Olivia Taylor', age: 10, guardian: 'parent2@example.com', appliedFor: 'Creative Writing' },
-];
-
-// DOM elements
-const applicantsTable = document.getElementById('applicantsTable');
-const applicantForm = document.getElementById('applicantForm');
-const deleteBtn = document.getElementById('deleteBtn');
-const searchInput = document.getElementById('searchInput');
-const searchBtn = document.getElementById('searchBtn');
-
-
-
-// Edit applicant
-function editApplicant(id) {
-    const applicant = applicantsData.find(a => a.id === id);
-    if (applicant) {
-        document.getElementById('name').value = applicant.name;
-        document.getElementById('age').value = applicant.age;
-        document.getElementById('guardian').value = applicant.guardian;
-        document.getElementById('appliedFor').value = applicant.appliedFor;
-        applicantForm.dataset.id = id;
-    }
-}
-
-// Search applicants
-function searchApplicants(query) {
-    return applicantsData.filter(applicant =>
-        applicant.name.toLowerCase().includes(query.toLowerCase()) ||
-        applicant.guardian.toLowerCase().includes(query.toLowerCase()) ||
-        applicant.appliedFor.toLowerCase().includes(query.toLowerCase())
-    );
-}
-
 // Initialize age distribution chart
 function initAgeChart() {
     const ctx = document.getElementById('ageChart').getContext('2d');
@@ -62,7 +23,67 @@ function initAgeChart() {
     });
 }
 
+function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+function darkenColor(color, percent) {
+    const rgba = color.match(/\d+/g);
+    const R = Math.max(0, rgba[0] - Math.round(rgba[0] * (percent / 100)));
+    const G = Math.max(0, rgba[1] - Math.round(rgba[1] * (percent / 100)));
+    const B = Math.max(0, rgba[2] - Math.round(rgba[2] * (percent / 100)));
+    const A = rgba[3];
+    return `rgba(${R}, ${G}, ${B}, ${A})`;
+}
+
+function initTypeChart() {
+    const ctx = document.getElementById('typeChart').getContext('2d');
+    const backgroundColors = [
+        'rgba(183, 224, 255, 0.5)',
+        'rgba(255, 245, 205, 0.5)',
+        'rgba(255, 207, 179, 0.5)',
+        'rgba(231, 143, 129, 0.5)', 
+        'rgba(231, 204, 204, 0.5)'
+    ];
+    const borderColors = [];
+    for (let i = 0; i < backgroundColors.length; i++) {
+        borderColors.push(darkenColor(backgroundColors[i], 20)); // Darken by 20%
+    }
+
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Interactive Art Workshops', 'Family Art Days', 'School lesson', 'Art and Technology Integration', 'Museum'],
+            datasets: [{
+                label: 'Number of Applicants',
+                data: [170, 280, 524, 230, 100],
+                backgroundColor: backgroundColors,
+                borderColor: borderColors,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Number of Applicants by Activity Type'
+                }
+            }
+        }
+    });
+}
+
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     initAgeChart();
+    initTypeChart();
 });
