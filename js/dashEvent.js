@@ -1,8 +1,8 @@
 // Sample data
 const events = [
-    { id: 1, title: "Painting Workshop", description: "Learn various painting techniques", fee: 150, mentor: "Alice Johnson", enrollTime: "2023-06-15", participants: 20, attendance: 18 },
-    { id: 2, title: "Drama Club", description: "Explore acting and stage performance", fee: 200, mentor: "Bob Smith", enrollTime: "2023-06-20", participants: 15, attendance: 14 },
-    { id: 3, title: "Music Class", description: "Introduction to musical instruments", fee: 180, mentor: "Carol White", enrollTime: "2023-06-25", participants: 18, attendance: 16 },
+    { id: 1, title: "Painting Workshop", description: "Learn various painting techniques", fee: 150, mentor: "Alice Johnson", enrollTime: "2023-06-15", participants: 20, attendance: 18, click: 800, like: 72, comment: 20 },
+    { id: 2, title: "Drama Club", description: "Explore acting and stage performance", fee: 200, mentor: "Bob Smith", enrollTime: "2023-06-20", participants: 15, attendance: 14, click: 150, like: 80, comment: 8 },
+    { id: 3, title: "Music Class", description: "Introduction to musical instruments", fee: 180, mentor: "Carol White", enrollTime: "2023-06-25", participants: 18, attendance: 16, click: 300, like: 50, comment: 10},
 ];
 
 // DOM elements
@@ -27,6 +27,9 @@ function populateEventTable(events) {
             <td>${event.enrollTime}</td>
             <td>${event.participants}</td>
             <td>${event.attendance}</td>
+            <td>${event.click}</td>
+            <td>${event.like}</td>
+            <td>${event.comment}</td>
             <td><button class="btn btn-link">View</button></td>
         `;
         tbody.appendChild(row);
